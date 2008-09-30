@@ -1,0 +1,53 @@
+
+<% include_stylesheet 'admin/movies/movie' %>
+
+<%# render_region :main do |main| %>
+  <%# main.edit_header do %>
+  <%# main.edit_form do %>  
+<%# end %>
+
+<% if @movie.new_record? %>
+  <h1>New movie</h1>
+<% else %>
+  <h1>Edit: <%= @movie.title %></h1>
+<% end %>
+
+
+<% form_tag do %>
+  <div class="form-area">
+    <div  id="movie_form_area">
+      <p class="title">
+        <label for="movie_title">Title</label>
+        <%= text_field "movie", "title", :class => 'textbox', :maxlength => 255 %>
+      </p>
+
+      <p class="url">
+        <label for="movie_url">URL</label>
+        <%= text_area "movie", "url", :class => 'textbox', :maxlength => 255 %>
+      </p>
+
+      <p class="description">
+        <label for="movie_description">Description</label>
+        <%= text_area "movie", "description", :class => 'textbox', :maxlength => 255 %>
+      </p>
+
+      <div class="row">
+        <p>
+          <label for="movie_visible">Status</label>
+          <select name="movie[visible]" id="movie_visible">
+            <%= options_for_select [["Visible",1], ["Hidden",0]] %>
+          </select>
+        </p>
+      </div>
+
+       <span class="clear">&nbsp;</span>
+    </div>
+  </div>
+
+  <p class="buttons">
+    <%= save_model_button(@movie) %>
+    <%= save_model_and_continue_editing_button(@movie) %>
+    or 
+    <%= link_to "Cancel", {:action => :index} %>
+  </p>
+<% end %>

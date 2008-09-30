@@ -1,0 +1,33 @@
+<% include_stylesheet 'admin/movies/movie' %>
+
+<h1>Movies</h1>
+
+<p>You can enter movies here, which will show up on the public side of your website.</p>
+
+<table cellspacing="0" cellpadding="0" border="0" class="index" id="movies">
+  
+  <thead>
+    <tr>
+      <th class="movie">Movie</th>
+      <th class="modify">Modify</th>
+    </tr>
+  </thead>
+  
+  <tbody>
+    <%# @movies.each do |movie| %>
+    <% Movie.find(:all).each do |movie| %>
+      <tr class="node level-1 <%= "inactive" unless movie.visible %>">
+        <td class="movie">
+          <%= image('movies/movie') %>
+          <%= link_to movie.title, movie_edit_url(:id => movie.id) %>
+        </td>
+        <td class="remove">
+          <%= link_to image('remove', :alt => 'Remove Movie'), movie_remove_url(:id => movie.id) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+  
+</table>
+
+<p><%= link_to image("movies/new-movie", :alt => "New Movie"), {:action => :new} %></p>
