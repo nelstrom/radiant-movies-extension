@@ -21,12 +21,10 @@ and expand the contents to `your-radiant-project/vendor/extensions/movies`.
 
 Once you have the extension added to your radiant project, you can run the rake task:
 
-    rake radiant:extensions:movies:migrate
-    # and/or
-    rake RAILS_ENV="production" radiant:extensions:movies:migrate
-
-Then run:
-
+    rake (production) radiant:extensions:movies:install
+    
+    # this is equivalent to running the following two tasks:
+    rake (production) radiant:extensions:movies:migrate
     rake radiant:extensions:movies:update
 
 Restart your Radiant, and you should be good to go.
