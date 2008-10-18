@@ -1,19 +1,8 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-# find movie page root by URL
-# find virtual movie page by URL
-
-
-  # test if_index/unless_index
-  # test movie
-  # test movie:title
-  # test movie:description
-  # test movie:url
-  # test movie:path
-# test movie:if_next
-# test movie:if_previous
-# test movie:next
-# test movie:next/previous:title/description/url/path
+# find movie page root by URL [DONE]
+# find virtual movie page by URL [DONE]
+# what happens when the id passed is for a non-existant movie?
 
 describe MoviePage, "class find_by_url" do
   scenario :movie_pages

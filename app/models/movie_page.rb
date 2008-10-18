@@ -1,5 +1,5 @@
 class MoviePage < Page
-  description "Provides tags and behavior to support searching Radiant.  Based on Oliver Baltzer's search_behavior."
+  description "A Movie page behaves both as an 'index' of all movies in the system, and as a 'show' page for each one of those movies. The 'index' behaviour is used when the path to access the page matches the page slug, e.g. /movies. The 'show' behaviour is triggered when the path to the page includes the slug and the id of a movie, e.g. /movies/1_first-movie."
   
   # Allows URLs to direct to the virtual course listing subpage
   def find_by_url(url, live = true, clean = false)
