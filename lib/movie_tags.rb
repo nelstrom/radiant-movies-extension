@@ -9,7 +9,7 @@ module MovieTags
   desc %{Returns all movies}
   tag 'movies:each' do |tag|
     movies = []
-    tag.locals.movies = Movie.find(:all, :conditions => ["visible = ?", true])
+    tag.locals.movies = Movie.find(:all, :conditions => ["visible = ?", true], :order => "position ASC")
     tag.locals.movies.each do |movie|
       tag.locals.movie = movie
       movies << tag.expand
