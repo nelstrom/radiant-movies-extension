@@ -22,7 +22,13 @@ namespace :radiant do
           mkdir_p RAILS_ROOT + directory
           cp file, RAILS_ROOT + path
         end
-      end  
+      end
+      
+      desc "Migrates and copies files in public/admin"
+      task :install => [:environment, :update, :migrate] do
+        puts "Movies extension has been installed."
+      end
+      
     end
   end
 end
