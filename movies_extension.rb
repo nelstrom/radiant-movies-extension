@@ -9,6 +9,8 @@ class MoviesExtension < Radiant::Extension
       movie.movie_new             'admin/movies/new',         :action => 'new'
       movie.movie_edit            'admin/movies/edit/:id',    :action => 'edit'
       movie.movie_remove          'admin/movies/remove/:id',    :action => 'remove'
+      movie.movie_reorder         'admin/movies/reorder',      :action => 'reorder'
+      movie.movie_update_order    'admin/movies/update_order', :action => 'update_order'
     end
   end
   

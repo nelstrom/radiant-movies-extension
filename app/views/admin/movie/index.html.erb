@@ -14,8 +14,7 @@
   </thead>
   
   <tbody>
-    <%# @movies.each do |movie| %>
-    <% Movie.find(:all).each do |movie| %>
+    <% @movies.each do |movie| %>
       <tr class="node level-1 <%= "inactive" unless movie.visible %>">
         <td class="movie">
           <%= image('movies/movie') %>
@@ -30,4 +29,7 @@
   
 </table>
 
-<p><%= link_to image("movies/new-movie", :alt => "New Movie"), {:action => :new} %></p>
+<p>
+  <%= link_to image("movies/new-movie", :alt => "New Movie"), {:action => :new} %>
+  <%= link_to image("movies/reorder", :alt => "Reorder"), {:action => :reorder} %>
+</p>

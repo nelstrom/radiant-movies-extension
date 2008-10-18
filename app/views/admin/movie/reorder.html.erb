@@ -1,0 +1,37 @@
+<% include_stylesheet 'admin/movies/movie' %>
+<% include_javascript 'dragdrop.js' %>
+
+<h1 id="reorder_pages">Reorder Movies</h1>
+
+<p>Drag and drop tracks to reorder. Click <strong>Finished</strong> when you are done.</p> 
+
+<ul id="movies" class="pages">
+  <% for child in @movies -%>
+    <li id="item_<%= child.id %>" class="movie">
+      <%= image('movies/movie') %>
+      <%= child.title %>
+    </li>
+  <% end -%>
+</ul>
+
+<script type="text/javascript">
+//<![CDATA[
+  Sortable.create("movies", 
+    { onUpdate:function() { 
+      $('sort_order').value = Sortable.sequence('movies').join(',') 
+    }
+  });
+//]]>
+</script>
+
+<% form_tag movie_update_order_path do %>
+
+  <div><%= hidden_field_tag "sort_order" %></div>
+  
+  <p class="buttons">
+    <%= submit_tag "Finished", :class => 'button' %> 
+    or 
+    <%= link_to 'Cancel', movie_index_path %>
+  </p>
+
+<% end %>
