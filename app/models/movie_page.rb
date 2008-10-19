@@ -74,19 +74,25 @@ class MoviePage < Page
   
   desc %{The contents of this tag are rendered only if this movie has a successor}
   tag "movie:if_next" do |tag|
-    tag.locals.next_movie = Movie.find(:first, :conditions => ["id > ? AND visible = ?", tag.locals.movie.id, true])
+    tag.locals.next_movie = Movie.find(:first, 
+      :conditions => ["id > ? AND visible = ?", tag.locals.movie.id, true],
+      :order => "position ASC")
     tag.expand if tag.locals.next_movie
   end
   
   desc %{The contents of this tag are rendered only if this movie has a predecessor}
   tag "movie:if_previous" do |tag|
-    tag.locals.previous_movie = Movie.find(:first, :conditions => ["id < ? AND visible = ?", tag.locals.movie.id, true], :order => 'id desc')
+    tag.locals.previous_movie = Movie.find(:first, 
+      :conditions => ["id < ? AND visible = ?", tag.locals.movie.id, true], 
+      :order => 'position DESC')
     tag.expand if tag.locals.previous_movie
   end
   
   desc %{Transfers the context to the next movie}
   tag "movie:next" do |tag|
-    if next_movie = Movie.find(:first, :conditions => ["id > ? AND visible = ?", tag.locals.movie.id, true])
+    if next_movie = Movie.find(:first, 
+      :conditions => ["id > ? AND visible = ?", tag.locals.movie.id, true],
+      :order => 'position ASC')
       tag.locals.movie = next_movie
       tag.expand
     end
@@ -94,7 +100,9 @@ class MoviePage < Page
   
   desc %{Transfers the context to the previous movie}
   tag "movie:previous" do |tag|
-    if previous_movie = Movie.find(:first, :conditions => ["id < ? AND visible = ?", tag.locals.movie.id, true], :order => 'id desc')
+    if previous_movie = Movie.find(:first, 
+      :conditions => ["id < ? AND visible = ?", tag.locals.movie.id, true], 
+      :order => 'position DESC')
       tag.locals.movie = previous_movie
       tag.expand
     end
